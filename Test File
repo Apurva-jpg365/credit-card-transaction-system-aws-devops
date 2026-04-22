@@ -1,0 +1,12 @@
+import requests
+
+url = "http://localhost:5000/transaction"
+
+payload = {
+    "card_number": "1234",
+    "amount": 15000
+}
+
+response = requests.post(url, json=payload)
+
+print(response.json())
