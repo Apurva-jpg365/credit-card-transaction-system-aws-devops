@@ -1,0 +1,21 @@
+from flask import Flask, request, jsonify
+from fraud import fraud_check
+
+app = Flask(__name__)
+
+@app.route('/transaction', methods=['POST'])
+def transaction():
+    data = request.json
+    card = data.get('card_number')
+    amount = data.get('amount')
+
+    status = fraud_check(card, amount)
+
+    return jsonify({
+        "card": card,
+        "amount": amount,
+        "status": status
+    })
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
