@@ -19,3 +19,7 @@ def transaction():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+def fraud_check(card, amount):
+    if amount > 10000:
+        return "Fraud - High Amount"
+    return "Valid Transaction"
